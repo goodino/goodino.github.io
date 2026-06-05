@@ -7,10 +7,13 @@ window.addEventListener("load", () => {
     if (loader) {
         setTimeout(() => {
             loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 500);
-        }, 1000);
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 600);
+        }, 1200);
     }
 });
+
 /* =========================
 OPENING SCREEN CONTROL
 ========================= */
@@ -184,7 +187,7 @@ if (closeLightbox && lightbox) {
 
 /* =========================
 FALLING PETALS
-========================= */
+========================= 
 
 function createPetals() {
 
@@ -206,7 +209,7 @@ function createPetals() {
 
 }
 
-setInterval(createPetals, 400);
+setInterval(createPetals, 900); */
 
 /* =========================
 BUTTERFLY ANIMATION
@@ -218,23 +221,20 @@ if (butterflies.length > 0) {
 
     function animateButterflies() {
 
-        const scrollY = window.scrollY;
+        const time = Date.now() / 1000;
 
         butterflies.forEach((b, i) => {
 
-            const x = Math.sin(scrollY / 200 + i) * 200 + i * 60;
-            const y = scrollY * 0.3 + i * 100;
+            const x = Math.sin(time + i) * 80 + i * 40;
+            const y = Math.cos(time + i) * 40 + i * 60;
 
             b.style.transform = `translate(${x}px, ${y}px)`;
-
         });
 
         requestAnimationFrame(animateButterflies);
-
     }
 
     animateButterflies();
-
 }
 
 /* =========================
@@ -247,6 +247,8 @@ if (canvas) {
 
     const ctx = canvas.getContext("2d");
 
+    let scrollY = 0;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -255,14 +257,18 @@ if (canvas) {
         canvas.height = window.innerHeight;
     });
 
+    window.addEventListener("scroll", () => {
+        scrollY = window.scrollY;
+    });
+
     const particles = [];
 
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 150; i++) {
         particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * (document.body.scrollHeight),
             r: Math.random() * 2,
-            speed: Math.random() * 0.8
+            speed: Math.random() * 0.3
         });
     }
 
@@ -270,27 +276,22 @@ if (canvas) {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "rgba(212,175,55,0.7)";
+        ctx.fillStyle = "rgba(212,175,55,0.6)";
 
         particles.forEach(p => {
 
+            const screenY = p.y - scrollY;
+
+            if (screenY < -50 || screenY > canvas.height + 50) return;
+
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.arc(p.x, screenY, p.r, 0, Math.PI * 2);
             ctx.fill();
-
-            p.y += p.speed;
-
-            if (p.y > canvas.height) {
-                p.y = 0;
-                p.x = Math.random() * canvas.width;
-            }
 
         });
 
         requestAnimationFrame(animate);
-
     }
 
     animate();
-
 }
