@@ -1,9 +1,16 @@
-
 /* =====================================================
-LUXURY WEDDING INVITATION - MAIN.JS (FINAL CLEAN VERSION)
-Anisa & Phalleap Wedding Website
+LUXURY WEDDING INVITATION - MAIN.JS (CLEAN FIXED VERSION)
 ===================================================== */
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
 
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = "0";
+            setTimeout(() => loader.remove(), 500);
+        }, 1000);
+    }
+});
 /* =========================
 OPENING SCREEN CONTROL
 ========================= */
@@ -28,11 +35,13 @@ if (openBtn && openingScreen && mainContent) {
 }
 
 /* =========================
-SPOTIFY FLOATING BUTTON
+SPOTIFY MUSIC BUTTON
 ========================= */
 
 const spotifyBtn = document.getElementById("spotifyBtn");
 const spotifyPlayer = document.querySelector(".spotify-player");
+
+let musicVisible = true;
 
 if (spotifyBtn && spotifyPlayer) {
 
@@ -49,43 +58,14 @@ if (spotifyBtn && spotifyPlayer) {
             spotifyPlayer.classList.remove("highlight");
         }, 1500);
 
+        musicVisible = !musicVisible;
+
+        spotifyPlayer.style.opacity = musicVisible ? "1" : "0.4";
+
     });
 
 }
-/* =========================
-SPOTIFY MUSIC CONTROL SYSTEM
-========================= */
 
-const spotifyBtn = document.getElementById("spotifyBtn");
-const spotifyPlayer = document.getElementById("spotifyPlayer");
-
-let musicVisible = true;
-
-spotifyBtn.addEventListener("click", () => {
-
-    // Scroll to player
-    spotifyPlayer.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-    // Toggle highlight
-    spotifyPlayer.classList.add("highlight");
-
-    setTimeout(() => {
-        spotifyPlayer.classList.remove("highlight");
-    }, 1500);
-
-    // OPTIONAL: hide/show player (clean wedding mode)
-    musicVisible = !musicVisible;
-
-    if (!musicVisible) {
-        spotifyPlayer.style.opacity = "0.4";
-    } else {
-        spotifyPlayer.style.opacity = "1";
-    }
-
-});
 /* =========================
 COUNTDOWN TIMER
 ========================= */
