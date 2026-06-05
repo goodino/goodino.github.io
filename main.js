@@ -52,7 +52,40 @@ if (spotifyBtn && spotifyPlayer) {
     });
 
 }
+/* =========================
+SPOTIFY MUSIC CONTROL SYSTEM
+========================= */
 
+const spotifyBtn = document.getElementById("spotifyBtn");
+const spotifyPlayer = document.getElementById("spotifyPlayer");
+
+let musicVisible = true;
+
+spotifyBtn.addEventListener("click", () => {
+
+    // Scroll to player
+    spotifyPlayer.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    // Toggle highlight
+    spotifyPlayer.classList.add("highlight");
+
+    setTimeout(() => {
+        spotifyPlayer.classList.remove("highlight");
+    }, 1500);
+
+    // OPTIONAL: hide/show player (clean wedding mode)
+    musicVisible = !musicVisible;
+
+    if (!musicVisible) {
+        spotifyPlayer.style.opacity = "0.4";
+    } else {
+        spotifyPlayer.style.opacity = "1";
+    }
+
+});
 /* =========================
 COUNTDOWN TIMER
 ========================= */
