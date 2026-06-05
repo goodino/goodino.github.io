@@ -1,72 +1,78 @@
 /* =====================================================
-LUXURY WEDDING INVITATION - MAIN.JS (CLEAN FIXED VERSION)
+ WEDDING INVITATION - MAIN.JS 
 ===================================================== */
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (loader) {
-        setTimeout(() => {
-            loader.style.opacity = "0";
+    /* ================= LOADER ================= */
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+
+        if (loader) {
             setTimeout(() => {
-                loader.style.display = "none";
-            }, 600);
-        }, 1200);
-    }
-});
-
-/* =========================
-OPENING SCREEN CONTROL
-========================= */
-
-const openingScreen = document.getElementById("openingScreen");
-const openBtn = document.getElementById("openInvitation");
-const mainContent = document.getElementById("mainContent");
-
-if (openBtn && openingScreen && mainContent) {
-
-    openBtn.addEventListener("click", () => {
-
-        openingScreen.style.opacity = "0";
-
-        setTimeout(() => {
-            openingScreen.style.display = "none";
-            mainContent.style.display = "block";
-        }, 800);
-
+                loader.style.opacity = "0";
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 600);
+            }, 1200);
+        }
     });
 
-}
+    /* ================= ELEMENTS ================= */
+    const openBtn = document.getElementById("openInvitation");
+    const openingScreen = document.getElementById("openingScreen");
+    const mainContent = document.getElementById("mainContent");
 
-/* =========================
-SPOTIFY MUSIC BUTTON
-========================= */
+    const audio = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
 
-const spotifyBtn = document.getElementById("spotifyBtn");
-const spotifyPlayer = document.querySelector(".spotify-player");
+    let isPlaying = false;
 
-let musicVisible = true;
+    /* ================= OPEN INVITATION ================= */
+    if (openBtn && openingScreen && mainContent) {
 
-if (spotifyBtn && spotifyPlayer) {
+        openBtn.addEventListener("click", () => {
 
-    spotifyBtn.addEventListener("click", () => {
+            openingScreen.style.opacity = "0";
 
-        spotifyPlayer.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
+            setTimeout(() => {
+                openingScreen.style.display = "none";
+                mainContent.style.display = "block";
+            }, 800);
+
+            /* start music after click */
+            if (audio) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    if (musicBtn) {
+                        musicBtn.classList.add("active");
+                        musicBtn.textContent = "⏸️";
+                    }
+                });
+            }
+
         });
 
-        spotifyPlayer.classList.add("highlight");
+    }
 
-        setTimeout(() => {
-            spotifyPlayer.classList.remove("highlight");
-        }, 1500);
+    /* ================= MUSIC BUTTON ================= */
+if (musicBtn && audio) {
 
-        musicVisible = !musicVisible;
+    musicBtn.addEventListener("click", () => {
 
-        spotifyPlayer.style.opacity = musicVisible ? "1" : "0.4";
-
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
     });
 
+    audio.addEventListener("play", () => {
+        musicBtn.textContent = "⏸️";
+    });
+
+    audio.addEventListener("pause", () => {
+        musicBtn.textContent = "🎵";
+    });
 }
 
 /* =========================
@@ -185,57 +191,79 @@ if (closeLightbox && lightbox) {
 
 }
 
-/* =========================
-FALLING PETALS
-========================= 
+/* =============================
+FLOATING LOTTIE BUTTERFLIES
+============================= */
 
-function createPetals() {
+const butterflyContainer = document.getElementById("butterflyContainer");
 
-    const container = document.getElementById("petalContainer");
+const butterflies = [];
 
-    if (!container) return;
+const COUNT = 12; // number of butterflies
 
-    const petal = document.createElement("div");
+for (let i = 0; i < COUNT; i++) {
 
-    petal.className = "petal";
-    petal.innerHTML = "🌸";
+    const el = document.createElement("div");
+    el.className = "lottie-butterfly";
 
-    petal.style.left = Math.random() * 100 + "vw";
-    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    butterflyContainer.appendChild(el);
 
-    container.appendChild(petal);
+    // Lottie
+    lottie.loadAnimation({
+        container: el,
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "assets/animations/butterfly.json"
+    });
 
-    setTimeout(() => petal.remove(), 10000);
-
+    butterflies.push({
+        el,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: 0,
+        vy: 0
+    });
 }
 
-setInterval(createPetals, 900); */
+function animateButterflies() {
 
-/* =========================
-BUTTERFLY ANIMATION
-========================= */
+    const windX = Math.sin(Date.now() * 0.0001) * 0.08;
+    const windY = Math.cos(Date.now() * 0.00008) * 0.05;
 
-const butterflies = document.querySelectorAll(".butterfly");
+    butterflies.forEach(b => {
 
-if (butterflies.length > 0) {
+        // random flutter (natural movement)
+        b.vx += (Math.random() - 0.5) * 0.05;
+        b.vy += (Math.random() - 0.5) * 0.05;
 
-    function animateButterflies() {
+        // wind force
+        b.vx += windX;
+        b.vy += windY;
 
-        const time = Date.now() / 1000;
+        // damping (prevents chaos)
+        b.vx *= 0.88;
+        b.vy *= 0.88;
 
-        butterflies.forEach((b, i) => {
+        // movement
+        b.x += b.vx;
+        b.y += b.vy;
 
-            const x = Math.sin(time + i) * 80 + i * 40;
-            const y = Math.cos(time + i) * 40 + i * 60;
+        // wrap around screen (IMPORTANT FIX)
+        if (b.x > window.innerWidth) b.x = 0;
+        if (b.x < 0) b.x = window.innerWidth;
 
-            b.style.transform = `translate(${x}px, ${y}px)`;
-        });
+        if (b.y > window.innerHeight) b.y = 0;
+        if (b.y < 0) b.y = window.innerHeight;
 
-        requestAnimationFrame(animateButterflies);
-    }
+        // render
+        b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+    });
 
-    animateButterflies();
+    requestAnimationFrame(animateButterflies);
 }
+
+animateButterflies();
 
 /* =========================
 GLITTER CANVAS
@@ -295,3 +323,4 @@ if (canvas) {
 
     animate();
 }
+});

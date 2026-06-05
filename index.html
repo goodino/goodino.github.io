@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Anisa & Phalleap | Wedding Invitation</title>
+<title>Phalleap & Anisa | Wedding Invitation</title>
 
-<meta name="description" content="Wedding Invitation of Anisa and Phalleap">
+<meta name="description" content="Wedding Invitation of Phalleap and Anisa">
 
-<meta property="og:title" content="Anisa & Phalleap Wedding Invitation">
+<meta property="og:title" content="Phalleap & Anisa Wedding Invitation">
 <meta property="og:description" content="Join us in celebrating our special day">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/images/og-cover.jpg">
+<meta property="og:image" content="assets/images/daisy.png">
 
 <meta name="theme-color" content="#d4af37">
 
@@ -24,11 +24,13 @@
 rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="assets/images/favicon.png">
+<link rel="icon" href="assets/images/daisy.png">
 
 </head>
 
 <body>
+
+<div id="butterflyContainer"></div>
 
 <!-- ================= LOADER ================= -->
 <div id="loader">
@@ -38,40 +40,32 @@ rel="stylesheet">
     </div>
 </div>
 
+
 <!-- ================= CANVAS ================= -->
 <canvas id="glitterCanvas"></canvas>
 <div id="petalContainer"></div>
 
-<div id="butterflyLayer">
-    <div class="butterfly">🦋</div>
-    <div class="butterfly">🦋</div>
-    <div class="butterfly">🦋</div>
-</div>
+<div id="lottieButterfly"></div>
 
 <!-- =========================
-SPOTIFY MUSIC SYSTEM (UPGRADED)
-A Thousand Years - Christina Perri
+MUSIC in bg
+Canon in D
 ========================= -->
 
-<div class="spotify-player glass">
+<audio id="bgMusic" loop>
+  <source src="assets/music/canonind.mp3" type="audio/mpeg">
+</audio>
 
-    <h3>Our Song 🎵</h3>
+<button id="musicBtn" class="music-btn">🎵</button>
 
-    <iframe
-        src="https://open.spotify.com/embed/track/6lanRgr6wXibZr8KgzXxBl"
-        width="100%"
-        height="152"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
 
-</div>
 
 <!-- ================= FLOATING BUTTON ================= -->
-<button id="spotifyBtn" class="music-btn">
-🎵
-</button>
+<audio id="bgMusic" loop>
+  <source src="assets/music/canonind.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" class="music-btn">🎵</button>
 
 <!-- ================= OPENING ================= -->
 <section id="openingScreen">
@@ -82,7 +76,7 @@ A Thousand Years - Christina Perri
 
         <p class="opening-subtitle">Wedding Invitation</p>
 
-        <h1 class="opening-title">Anisa & Phalleap</h1>
+        <h1 class="opening-title">Phalleap & Anisa</h1>
 
         <p class="opening-date">13 December 2026</p>
 
@@ -103,7 +97,7 @@ A Thousand Years - Christina Perri
 
         <p class="hero-intro">Together with their families</p>
 
-        <h1 class="hero-name">Anisa & Phalleap</h1>
+        <h1 class="hero-name">Phalleap & Anisa</h1>
 
         <p class="hero-date">13 December 2026 • 7:00 PM</p>
 
@@ -136,12 +130,12 @@ A Thousand Years - Christina Perri
 
             <div class="person-card reveal">
                 <img src="assets/images/bride-placeholder.jpg">
-                <h3>Anisa</h3>
+                <h3>Phalleap</h3>
             </div>
 
             <div class="person-card reveal">
                 <img src="assets/images/groom-placeholder.jpg">
-                <h3>Phalleap</h3>
+                <h3>Anisa</h3>
             </div>
 
         </div>
@@ -198,12 +192,6 @@ A Thousand Years - Christina Perri
         src="https://maps.google.com/maps?q=Four%20Points%20by%20Sheraton&t=&z=14&output=embed"
         width="100%" height="300"></iframe>
 
-        <a class="map-link"
-        href="https://share.google/FQBrxsEojDLquHThS"
-        target="_blank">
-        Open in Google Maps
-        </a>
-
     </div>
 </section>
 
@@ -211,19 +199,11 @@ A Thousand Years - Christina Perri
 <section class="rsvp-section">
     <div class="container">
 
-        <form id="rsvpForm" class="rsvp-form glass">
+            <a href="https://forms.gle/e4xKnACSyMaSDKev7"
+            target="_blank">
 
-            <input name="name" placeholder="Your Name" required>
-
-            <select name="attendance">
-                <option value="">Will you attend?</option>
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-
-            <textarea name="message" placeholder="Wishes"></textarea>
-
-            <button class="btn-gold">Send RSVP</button>
+           <button class="btn-gold">RSVP here</button>
+           </a>
 
         </form>
 
@@ -232,13 +212,14 @@ A Thousand Years - Christina Perri
 
 <!-- FOOTER -->
 <footer class="footer">
-    <h2>Anisa & Phalleap</h2>
+    <h2>Phalleap & Anisa</h2>
     <p>13 December 2026</p>
 </footer>
 
 </div>
 
 <!-- ================= SCRIPT ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script src="main.js"></script>
 
 </body>

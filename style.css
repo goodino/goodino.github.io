@@ -1,5 +1,5 @@
 /* =====================================================
-LUXURY WEDDING INVITATION - FINAL STYLE.CSS
+ WEDDING INVITATION - STYLE.CSS
 Anisa & Phalleap Wedding Website
 ===================================================== */
 
@@ -46,6 +46,28 @@ h1,h2,h3{
 .script{
     font-family:'Great Vibes', cursive;
 }
+/* ==========================
+Lottie Butterfly animation 
+=============================*/
+#butterflyContainer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:2;
+    overflow:hidden;
+}
+
+.lottie-butterfly{
+    position: absolute;
+    width:25px;
+    height:25px;
+    opacity:0.45;
+    will-change: transform;
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.6));
+
+}
+
 
 /* =========================
 CONTAINER
@@ -326,29 +348,6 @@ RSVP FORM
 }
 
 /* =========================
-SPOTIFY PLAYER
-========================= */
-
-.spotify-player{
-    max-width:650px;
-    margin:60px auto;
-    padding:25px;
-    text-align:center;
-}
-
-.spotify-player h3{
-    color:var(--gold);
-    margin-bottom:15px;
-}
-
-/* highlight */
-.spotify-player.highlight{
-    transform:scale(1.03);
-    transition:0.4s ease;
-    box-shadow:0 0 30px rgba(212,175,55,0.5);
-}
-
-/* =========================
 MUSIC BUTTON
 ========================= */
 
@@ -366,6 +365,31 @@ MUSIC BUTTON
     cursor:pointer;
     z-index:99999;
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+.music-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 15px 35px rgba(212,175,55,0.4);
+    transition:0.3s ease;
+}
+
+/* ===== MUSIC ACTIVE STATE ===== */
+
+.music-btn.active{
+    animation:pulse 1.5s infinite;
+    box-shadow:0 0 25px rgba(212,175,55,0.6);
+    transform:scale(1.05);
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 10px rgba(212,175,55,0.3);
+    }
+    50%{
+        box-shadow:0 0 30px rgba(212,175,55,0.7);
+    }
+    100%{
+        box-shadow:0 0 10px rgba(212,175,55,0.3);
+    }
 }
 
 /* =========================
