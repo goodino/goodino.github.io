@@ -377,6 +377,24 @@ MUSIC BUTTON
 .music-btn:hover{
     transform:scale(1.15);
 }
+/* =========================
+SPOTIFY UPGRADE ADD-ON
+========================= */
+
+/* smoother animation */
+.spotify-player{
+    transition:0.5s ease;
+}
+
+/* nicer iframe rounding */
+.spotify-player iframe{
+    border-radius:16px;
+}
+
+/* softer glow on highlight */
+.spotify-player.highlight{
+    box-shadow:0 0 30px rgba(212,175,55,0.7);
+}
 
 @keyframes floatBtn{
     0%,100%{transform:translateY(0);}
