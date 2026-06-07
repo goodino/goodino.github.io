@@ -30,7 +30,8 @@ GLOBAL RESET
 
 body{
     font-family:'Poppins', sans-serif;
-    background: linear-gradient(135deg,#fffdf9,#fff3f7,#f4fbf7);
+    /* background: linear-gradient(135deg,#fffdf9,#fff3f7,#f4fbf7); */
+    background: url('/assets/images/bgimg.png') center center / cover no-repeat fixed;
     color:#333;
     overflow-x:hidden;
 }
@@ -96,10 +97,22 @@ GLASS EFFECT (LUXURY CORE)
 LOADER
 ========================= */
 
+.loader-ornament{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:auto;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+    z-index:1;
+}
+
 #loader{
     position:fixed;
     inset:0;
-    background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7);
+    background:linear-gradient(135deg,#fff,#f8dce4,#f4fbf7);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -107,18 +120,25 @@ LOADER
     transition:0.5s ease;
 }
 
+
 .loader-content{
     text-align:center;
 }
 
 .loader-flower{
-    font-size:45px;
-    animation: float 2s ease-in-out infinite;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    animation: floatFlower 3s ease-in-out infinite;
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-12px);}
+@keyframes floatFlower {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* =========================
@@ -128,7 +148,8 @@ OPENING SCREEN (CINEMATIC)
 #openingScreen{
     position:fixed;
     inset:0;
-    background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7);
+    /* background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7); */
+    background: url('/assets/images/welcome2.png') center center / cover no-repeat;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -139,17 +160,13 @@ OPENING SCREEN (CINEMATIC)
 
 .opening-content{
     max-width:600px;
+    transform: translateY(-8vh);
     animation: fadeInUp 1.2s ease;
 }
 
 @keyframes fadeInUp{
     from{opacity:0; transform:translateY(30px);}
     to{opacity:1; transform:translateY(0);}
-}
-
-.opening-floral{
-    font-size:26px;
-    margin-bottom:10px;
 }
 
 .opening-title{
