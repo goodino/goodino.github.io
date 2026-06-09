@@ -130,34 +130,6 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-/* =========================
-BACK TO TOP BUTTON
-========================= */
-
-const backToTop = document.getElementById("backToTop");
-
-if (backToTop) {
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 600) {
-            backToTop.style.display = "block";
-        } else {
-            backToTop.style.display = "none";
-        }
-
-    });
-
-    backToTop.addEventListener("click", () => {
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
-
-}
 
 /* =========================
 LIGHTBOX GALLERY
@@ -324,3 +296,38 @@ if (canvas) {
     animate();
 }
 });
+
+/* ====
+GIFT
+======= */
+document
+.querySelectorAll('.gift-toggle')
+.forEach(button=>{
+
+    button.addEventListener('click',()=>{
+
+        const item =
+            button.parentElement;
+
+        item.classList.toggle('active');
+
+    });
+
+});
+
+function copyText(text){
+
+    navigator.clipboard.writeText(text);
+
+    const toast =
+        document.getElementById('toast');
+
+    toast.textContent =
+        'Account number copied';
+
+    toast.classList.add('show');
+
+    setTimeout(()=>{
+        toast.classList.remove('show');
+    },2000);
+}
