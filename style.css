@@ -187,6 +187,12 @@ OPENING SCREEN (CINEMATIC)
     position:fixed;
     inset:0;
     /* background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7); */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    z-index:99998;
 }
 
 .opening-bg{
@@ -202,6 +208,8 @@ OPENING SCREEN (CINEMATIC)
 }
 
 .opening-content{
+    position:relative;
+    z-index:2;
     max-width:600px;
     transform: translateY(-8vh);
     animation: fadeInUp 1.2s ease;
