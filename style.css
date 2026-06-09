@@ -18,6 +18,24 @@ ROOT THEME
 #mainContent{
     display:none;
 }
+
+.main-ornament{    
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:auto;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+    z-index:1;
+}
+
+.main-ornament img{
+    width:100%;
+    height:auto;
+}
+
 /* =========================
 GLOBAL RESET
 ========================= */
@@ -81,12 +99,13 @@ Lottie Butterfly animation
 
 .lottie-butterfly{
     position: absolute;
-    width:25px;
-    height:25px;
-    opacity:0.45;
+    width:20px;
+    height:20px;
+    opacity:0.55;
     will-change: transform;
+    pointer-events:none;
     filter:
-        drop-shadow(0 0 8px rgba(255,255,255,.6));
+        drop-shadow(0 0 4px rgba(255,255,255,.4));
 
 }
 
@@ -128,7 +147,7 @@ LOADER
     justify-content:center;
     pointer-events:none;
     z-index:1;
-}
+} 
 
 #loader{
     position:fixed;
@@ -376,25 +395,123 @@ LIGHTBOX
 }
 
 /* =========================
-RSVP FORM
+RSVP SECTION
 ========================= */
-
-.rsvp-form{
-    max-width:600px;
-    margin:auto;
-    padding:30px;
-    border-radius:25px;
+.rsvp-deadline{
+    margin-bottom:25px;
+    color:#888;
+    font-size:.9rem;
 }
 
-.rsvp-form input,
-.rsvp-form select,
-.rsvp-form textarea{
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    border-radius:12px;
-    border:1px solid #ddd;
+.rsvp-section{
+    padding:60px 0 20px;
 }
+
+.rsvp-card{
+    max-width:700px;
+    margin:0 auto;
+    padding:50px 30px;
+    text-align:center;
+}
+
+.rsvp-small{
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-size:.85rem;
+    margin-bottom:15px;
+}
+
+.rsvp-title{
+    font-size:2.5rem;
+    color:var(--gold);
+    margin-bottom:20px;
+}
+
+.rsvp-text{
+    max-width:500px;
+    margin:0 auto 35px;
+    line-height:1.8;
+    color:#666;
+}
+
+.rsvp-link{
+    text-decoration:none;
+}
+
+.btn-rsvp{
+    display:inline-block;
+
+    min-width:280px;
+
+    padding:18px 35px;
+
+    border:none;
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold-light)
+        );
+
+    color:white;
+
+    font-size:1rem;
+    font-weight:600;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 15px 35px rgba(212,175,55,.35);
+
+    transition:.3s ease;
+
+    animation:rsvpPulse 2.5s infinite;
+}
+
+.btn-rsvp:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 20px 45px rgba(212,175,55,.45);
+}
+
+@keyframes rsvpPulse{
+
+    0%{
+        box-shadow:
+        0 0 0 0 rgba(212,175,55,.45);
+    }
+
+    70%{
+        box-shadow:
+        0 0 0 20px rgba(212,175,55,0);
+    }
+
+    100%{
+        box-shadow:
+        0 0 0 0 rgba(212,175,55,0);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .rsvp-title{
+        font-size:2rem;
+    }
+
+    .btn-rsvp{
+        width:100%;
+        min-width:auto;
+    }
+
+}
+
 
 .btn-gold{
     width:100%;
@@ -477,7 +594,7 @@ ANIMATIONS
 GIFT SECTION 
 =================*/
 .gift-section{
-    padding:120px 0;
+    padding:40px 0 60px;
     text-align:center;
 }
 
@@ -508,19 +625,28 @@ GIFT SECTION
     cursor:pointer;
 }
 
+.gift-toggle span:last-child{
+    transition:transform .3s ease;
+}
+
+.gift-item.active .gift-toggle span:last-child{
+    transform:rotate(45deg);
+}
+
 .gift-content{
     max-height:0;
+    max-width:260px;
+    margin:0 auto;
     overflow:hidden;
-
+    padding: 0 20px;
     transition:
         max-height .4s ease,
         padding .4s ease;
 
-    padding:0 20px;
 }
 
 .gift-item.active .gift-content{
-    max-height:500px;
+    max-height:1000px;
     padding:0 20px 25px;
 }
 
@@ -540,17 +666,15 @@ GIFT SECTION
     display:block;
     width:min(220px,70vw);
     height:auto;
-
     margin:20px auto;
-
     border-radius:16px;
-
     object-fit:contain;
 }
 
-.khqr-wrapper{
-    max-width:260px;
-    margin:0 auto;
+.qr-hint{
+    font-size:.85rem;
+    color:#888;
+    margin-top:10px;
 }
 
 /* Toast */
@@ -585,7 +709,8 @@ FOOTER
 
 .footer{
     position:relative;
-    padding:140px 20px 100px;
+    /* padding:140px 20px 100px;*/
+    padding:30px 0 120px;
     text-align:center;
     overflow:hidden;
 
