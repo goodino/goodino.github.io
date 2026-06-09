@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Anisa & Austin | Wedding Invitation</title>
+<title>Anisa & Austin | Save the Date</title>
 
 <meta name="description" content="Wedding Invitation of Anisa and Austin">
 
 <meta property="og:title" content="Anisa & Austin Wedding Invitation">
 <meta property="og:description" content="Join us in celebrating our special day">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/images/daisy2.png">
+<meta property="og:image" content="assets/images/daisy2.webp">
 
 <meta name="theme-color" content="#d4af37">
 
@@ -24,7 +24,8 @@
 rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="assets/images/daisy2.png">
+<link rel="icon" href="assets/images/daisy2.webp">
+<link rel="preload" as="image" href="assets/images/welcome2.webp">
 
 </head>
 
@@ -36,12 +37,12 @@ rel="stylesheet">
 <!-- ================= LOADER ================= -->
 <div id="loader">
      <div class="loader-ornament">
-    <img src="assets/images/ornament.png" style="width: 100%; height: auto;">
+    <img src="assets/images/ornament.webp" style="width: 100%; height: auto;">
 </div>
 
     <div class="loader-content">
         <img
-            src="assets/images/orchid.png"
+            src="assets/images/orchid.webp"
             alt="Orchid"
             class="loader-flower"
         >
@@ -72,7 +73,7 @@ Canon in D
 
     <div class="opening-content">
 
-        <p class="opening-subtitle">Wedding Invitation</p>
+        <p class="opening-subtitle">Save the Date</p>
 
         <h1 class="opening-title">Anisa & Austin</h1>
 
@@ -127,12 +128,12 @@ Canon in D
         <div class="couple-grid">
 
             <div class="person-card reveal">
-                <img src="assets/images/bride-placeholder.jpg">
+                <img src="assets/images/bride-placeholder.webp">
                 <h3>Anisa</h3>
             </div>
 
             <div class="person-card reveal">
-                <img src="assets/images/groom-placeholder.jpg">
+                <img src="assets/images/groom-placeholder.webp">
                 <h3>Austin</h3>
             </div>
 
@@ -148,16 +149,16 @@ Canon in D
         <div class="gallery-grid">
 
             <!-- 10 placeholders -->
-            <div class="gallery-item"><img src="assets/images/gallery/photo1.jpg" style="object-position:center 80%"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo2.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo3.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo4.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo5.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo6.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo7.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo8.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo9.jpg"></div>
-            <div class="gallery-item"><img src="assets/images/gallery/photo10.jpg"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo1.webp" style="object-position:center 80%" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo2.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo3.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo4.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo5.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo6.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo7.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo8.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo9.webp" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/gallery/photo10.webp" loading="lazy"></div>
 
         </div>
 
@@ -174,7 +175,7 @@ Canon in D
 <section class="event-section">
     <div class="container">
 
-        <h2>Wedding Event</h2>
+        <h2>Wedding Reception</h2>
 
         <p>13 December 2026 • 7:00 PM</p>
         <p>Four Points by Sheraton</p>
@@ -208,6 +209,109 @@ Canon in D
     </div>
 </section>
 
+<!-- GIFT SECTION -->
+<section class="gift-section reveal">
+
+    <div class="container">
+
+        <h2>Wedding Gift</h2>
+
+        <p class="gift-text">
+            Your presence at our wedding is the greatest gift.
+            For family and friends who wish to bless us further,
+            gift options are available below.
+        </p>
+
+        <!-- BCA -->
+        <div class="gift-item glass">
+
+            <button class="gift-toggle">
+                <span>BCA Indonesia</span>
+                <span>+</span>
+            </button>
+
+            <div class="gift-content">
+
+                <p class="gift-label">
+                    Account Number
+                </p>
+
+                <p class="gift-account">
+                    022-264-8988
+                </p>
+
+                <p>
+                    Anisa Nursalimah
+                </p>
+
+                <button
+                    class="btn-gold"
+                    onclick="copyText('0222648988')">
+                    Copy Account Number
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- ABA -->
+        <div class="gift-item glass">
+
+            <button class="gift-toggle">
+                <span>ABA Bank Cambodia</span>
+                <span>+</span>
+            </button>
+
+            <div class="gift-content">
+
+                <p class="gift-label">
+                    Account Number
+                </p>
+
+                <p class="gift-account">
+                    004 720 121
+                </p>
+
+                <p>
+                    Anisa Nursalimah
+                </p>
+
+                <button
+                    class="btn-gold"
+                    onclick="copyText('004720121')">
+                    Copy Account Number
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- ABA QR -->
+        <div class="gift-item glass">
+
+            <button class="gift-toggle">
+                <span>KHQR</span>
+                <span>+</span>
+            </button>
+
+            <div class="gift-content">
+
+                <img
+                    src="assets/images/khqr.jpg"
+                    alt="KHQR"
+                    class="khqr-image"
+                >
+
+            </div>    
+
+        </div>
+
+    </div>
+
+</section>
+
+<div id="toast" class="toast"></div>
+
 <!-- FOOTER -->
 <footer class="footer">
 
@@ -220,7 +324,7 @@ Canon in D
     </p>
 
     <img
-        src="assets/images/daisy-divider.png"
+        src="assets/images/daisy-divider.webp"
         class="footer-flower"
     >
 
