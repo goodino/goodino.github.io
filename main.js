@@ -171,17 +171,16 @@ const butterflyContainer = document.getElementById("butterflyContainer");
 
 const butterflies = [];
 
-const COUNT = 12; // number of butterflies
+const COUNT = window.innerWidth < 768 ? 6 : 8;
 
-for (let i = 0; i < COUNT; i++) {
+for(let i = 0; i < COUNT; i++){
 
     const el = document.createElement("div");
     el.className = "lottie-butterfly";
 
     butterflyContainer.appendChild(el);
 
-    // Lottie
-    lottie.loadAnimation({
+    const animation = lottie.loadAnimation({
         container: el,
         renderer: "svg",
         loop: true,
@@ -189,53 +188,46 @@ for (let i = 0; i < COUNT; i++) {
         path: "assets/animations/butterfly.json"
     });
 
+    animation.setSpeed(0.7);
+
     butterflies.push({
         el,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: 0,
-        vy: 0
+
+        startX: Math.random() * window.innerWidth,
+        startY: Math.random() * window.innerHeight,
+
+        amplitudeX: 40 + Math.random() * 80,
+        amplitudeY: 20 + Math.random() * 50,
+
+        speed: 0.00015 + Math.random() * 0.00015,
+
+        offset: Math.random() * Math.PI * 2
     });
 }
 
-function animateButterflies() {
-
-    const windX = Math.sin(Date.now() * 0.0001) * 0.08;
-    const windY = Math.cos(Date.now() * 0.00008) * 0.05;
+function animateButterflies(time){
 
     butterflies.forEach(b => {
 
-        // random flutter (natural movement)
-        b.vx += (Math.random() - 0.5) * 0.05;
-        b.vy += (Math.random() - 0.5) * 0.05;
+        const x =
+            b.startX +
+            Math.sin(time * b.speed + b.offset)
+            * b.amplitudeX;
 
-        // wind force
-        b.vx += windX;
-        b.vy += windY;
+        const y =
+            b.startY +
+            Math.cos(time * b.speed * 0.8 + b.offset)
+            * b.amplitudeY;
 
-        // damping (prevents chaos)
-        b.vx *= 0.88;
-        b.vy *= 0.88;
+        b.el.style.transform =
+            `translate3d(${x}px, ${y}px, 0)`;
 
-        // movement
-        b.x += b.vx;
-        b.y += b.vy;
-
-        // wrap around screen (IMPORTANT FIX)
-        if (b.x > window.innerWidth) b.x = 0;
-        if (b.x < 0) b.x = window.innerWidth;
-
-        if (b.y > window.innerHeight) b.y = 0;
-        if (b.y < 0) b.y = window.innerHeight;
-
-        // render
-        b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
     });
 
     requestAnimationFrame(animateButterflies);
 }
 
-animateButterflies();
+requestAnimationFrame(animateButterflies);
 
 /* =========================
 GLITTER CANVAS
@@ -300,9 +292,7 @@ if (canvas) {
 /* ====
 GIFT
 ======= */
-document
-.querySelectorAll('.gift-toggle')
-.forEach(button=>{
+document.querySelectorAll('.gift-toggle').forEach(button=>{
 
     button.addEventListener('click',()=>{
 
@@ -331,3 +321,15 @@ function copyText(text){
         toast.classList.remove('show');
     },2000);
 }
+
+document.querySelectorAll('.qr-clickable').forEach(img => {
+
+    img.addEventListener('click', () => {
+
+        document.getElementById('lightboxImage').src = img.src;
+
+        document.getElementById('lightbox').style.display = 'flex';
+
+    });
+
+});
