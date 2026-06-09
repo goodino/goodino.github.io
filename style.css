@@ -48,7 +48,7 @@ body::before{
     inset:0;
 
     background:
-        url('assets/images/bgimg.png')
+        url('assets/images/bgimg.webp')
         center center / cover
         no-repeat; 
 
@@ -170,7 +170,7 @@ OPENING SCREEN (CINEMATIC)
     position:fixed;
     inset:0;
     /* background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7); */
-    background: url('/assets/images/welcome2.png') center center / cover no-repeat;
+    background: url('/assets/images/welcome2.webp') center center / cover no-repeat;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -471,6 +471,102 @@ ANIMATIONS
 .reveal.active{
     opacity:1;
     transform: translateY(0) scale(1);
+}
+
+/* ==============
+GIFT SECTION 
+=================*/
+.gift-section{
+    padding:120px 0;
+    text-align:center;
+}
+
+.gift-text{
+    max-width:600px;
+    margin:20px auto 50px;
+    line-height:1.8;
+}
+
+.gift-item{
+    margin-bottom:15px;
+    overflow:hidden;
+}
+
+.gift-toggle{
+    width:100%;
+    padding:20px;
+    border:none;
+    background:none;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    font-size:1rem;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.gift-content{
+    max-height:0;
+    overflow:hidden;
+
+    transition:
+        max-height .4s ease,
+        padding .4s ease;
+
+    padding:0 20px;
+}
+
+.gift-item.active .gift-content{
+    max-height:500px;
+    padding:0 20px 25px;
+}
+
+.gift-label{
+    color:#888;
+    margin-bottom:10px;
+}
+
+.gift-account{
+    font-size:1.4rem;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+.khqr-image{
+    width:220px;
+    max-width:100%;
+    margin:20px auto;
+    display:block;
+}
+
+/* Toast */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:100px;
+
+    transform:translateX(-50%);
+
+    background:#333;
+    color:white;
+
+    padding:12px 20px;
+    border-radius:999px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:999999;
+}
+
+.toast.show{
+    opacity:1;
 }
 
 /* =========================
