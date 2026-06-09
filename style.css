@@ -107,7 +107,6 @@ GLASS EFFECT (LUXURY CORE)
 
 .glass{
     background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(25px);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-radius: 25px;
@@ -410,7 +409,7 @@ RSVP FORM
     text-transform: uppercase;
 }
 
-.btngold:hover{
+.btn-gold:hover{
     transform:translateY(-3px)
 }
 
@@ -538,10 +537,20 @@ GIFT SECTION
 }
 
 .khqr-image{
-    width:220px;
-    max-width:100%;
-    margin:20px auto;
     display:block;
+    width:min(220px,70vw);
+    height:auto;
+
+    margin:20px auto;
+
+    border-radius:16px;
+
+    object-fit:contain;
+}
+
+.khqr-wrapper{
+    max-width:260px;
+    margin:0 auto;
 }
 
 /* Toast */
