@@ -20,7 +20,7 @@ ROOT THEME
 }
 
 .main-ornament{    
-    position:fixed;
+    position:absolute;
     top:0;
     left:0;
     width:100%;
@@ -610,6 +610,9 @@ GIFT SECTION
 }
 
 .gift-toggle{
+    color:#333;
+    appearance: none;
+    -webkit-appearance: none;
     width:100%;
     padding:20px;
     border:none;
@@ -627,10 +630,12 @@ GIFT SECTION
 
 .gift-toggle span:last-child{
     transition:transform .3s ease;
+    color:inherit;
 }
 
 .gift-item.active .gift-toggle span:last-child{
     transform:rotate(45deg);
+    color:inherit;
 }
 
 .gift-content{
