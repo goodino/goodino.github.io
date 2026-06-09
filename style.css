@@ -207,6 +207,13 @@ OPENING SCREEN (CINEMATIC)
     z-index:0;
 }
 
+@media(max-width:768px){
+
+    .opening-bg{
+        object-position:center top;
+    }
+}
+
 .opening-content{
     position:relative;
     z-index:2;
