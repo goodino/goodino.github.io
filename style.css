@@ -170,7 +170,7 @@ OPENING SCREEN (CINEMATIC)
     position:fixed;
     inset:0;
     /* background: linear-gradient(135deg,#fff,#f8dce4,#f4fbf7); */
-    background: url('/assets/images/welcome2.webp') center center / cover no-repeat;
+    background: url('assets/images/welcome2.webp') center center / cover no-repeat;
     display:flex;
     align-items:center;
     justify-content:center;
