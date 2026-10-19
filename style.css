@@ -1,6 +1,6 @@
 /* =====================================================
  WEDDING INVITATION - STYLE.CSS
-Anisa & Phalleap Wedding Website
+Austin & Jia Jia Wedding Website
 ===================================================== */
 
 /* =========================
@@ -63,6 +63,13 @@ body::before{
     pointer-events:none;
 }
 
+.site-background-wrapper{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+}
+
 .site-background{
     position:fixed;
     inset:0;
@@ -119,7 +126,7 @@ CONTAINER
 }
 
 /* =========================
-GLASS EFFECT (LUXURY CORE)
+GLASS EFFECT
 ========================= */
 
 .glass{
@@ -203,6 +210,7 @@ OPENING SCREEN (CINEMATIC)
     height:100%;
 
     object-fit:cover;
+    object-position: center center;
 
     z-index:0;
 }
@@ -252,7 +260,7 @@ OPENING SCREEN (CINEMATIC)
 }
 
 /* =========================
-HERO SECTION (LUXURY CENTERPIECE)
+HERO SECTION
 ========================= */
 
 .hero{
@@ -267,7 +275,7 @@ HERO SECTION (LUXURY CENTERPIECE)
 
 .hero-intro{
     font-size:1rem;
-    color:var(--jade);
+    color:var(--dark);
     letter-spacing:1px;
 }
 
@@ -295,7 +303,7 @@ HERO SECTION (LUXURY CENTERPIECE)
 
 .hero-venue{
     margin-top:10px;
-    color:var(--jade);
+    color:#444;
 }
 
 /* =========================
@@ -304,25 +312,58 @@ COUNTDOWN
 
 .countdown-wrapper{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-top:40px;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:30px;
 }
 
-@media(max-width:480px){
 .count-box{
-    background:rgba(255,255,255,0.6);
-    padding:15px;
-    border-radius:20px;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(8px);
+
+    padding:16px 10px;
+    border-radius:18px;
+
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+
+    border:1px solid rgba(255,255,255,.4);
+
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
 
 .count-box span{
-    font-size:1.8rem;
+    display:block;
+    font-size:2rem;
+    font-weight:700;
     color:var(--gold);
-    font-weight:bold;
+    line-height:1;
+    margin-bottom:6px;
 }
+
+.count-box small{
+    display:block;
+    font-size:.75rem;
+    letter-spacing:2px;
+    color:#777;
+}
+
+@media(min-width:769px){
+
+    .countdown-wrapper{
+        grid-template-columns:repeat(4,1fr);
+        max-width:900px;
+        margin:40px auto 0;
+    }
+
+    .count-box{
+        padding:25px 15px;
+    }
+
+    .count-box span{
+        font-size:3rem;
+    }
+
 }
 
 /* =========================
@@ -381,6 +422,13 @@ GALLERY (PREMIUM GRID)
 
 .gallery-item img:hover{
     transform:scale(1.05);
+}
+
+/* ===
+VENUE MARGIN
+====*/
+.event-section{
+    margin-top: 30px;
 }
 
 /* =========================
@@ -711,6 +759,7 @@ GIFT SECTION
     background:#333;
     color:white;
 
+    font-size: x-small;
     padding:12px 20px;
     border-radius:999px;
 
@@ -741,7 +790,7 @@ FOOTER
         linear-gradient(
             180deg,
             rgba(255,255,255,0) 0%,
-            rgba(255,250,245,.95) 25%,
+            rgba(255,250,245,.95) 45%,
             rgba(255,248,242,1) 100%
         );
 }
@@ -775,7 +824,7 @@ FOOTER
 
 .footer-names{
     font-family:'Playfair Display',serif;
-    font-size:4rem;
+    font-size:3rem;
     color:var(--gold);
     margin-bottom:20px;
 }
@@ -786,6 +835,7 @@ FOOTER
     line-height:1.9;
     color:#666;
     font-size:1rem;
+    padding:20px;
 }
 
 .footer-divider{
@@ -805,6 +855,7 @@ FOOTER
     font-family:'Great Vibes',cursive;
     font-size:2rem;
     color:#b89b63;
+    padding:20px;
 }
 
 .footer-blessing{
