@@ -27,6 +27,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isPlaying = false;
 
+    /* ================= BG & OPENING ================= */
+    const bg = document.getElementById("siteBg");
+
+    if (window.innerWidth >= 769){
+        bg.src = "assets/images/bgimg-desktop.webp";
+    } else{
+        bg.src = "assets/images/bgimg.webp";
+    }
+
+    const openingBg = document.getElementById("openingBg");
+
+    if(window.innerWidth >=769) {
+        openingBg.src = "assets/images/welcome-desktop.webp";
+    } else{
+        openingBg.src = "assets/images/welcome2.webp"; 
+    }
+
     /* ================= OPEN INVITATION ================= */
     if (openBtn && openingScreen && mainContent) {
 
