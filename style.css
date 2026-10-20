@@ -186,6 +186,154 @@ LOADER
     }
 }
 
+
+/* =========================================
+   PRIVATE WEDDING INVITATION GATE
+========================================= */
+
+.access-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            rgba(255, 248, 249, 0.88),
+            rgba(255, 248, 249, 0.95)
+        ),
+        url("assets/images/bgimg.webp") center / cover no-repeat;
+}
+
+.access-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 38px 30px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    box-shadow: 0 15px 50px rgba(70, 45, 45, 0.12);
+}
+
+.access-heart {
+    font-family: "Great Vibes", cursive;
+    color: var(--gold);
+    font-size: 46px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.access-eyebrow {
+    color: #9b7b65;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.access-card h1 {
+    font-family: "Playfair Display", serif;
+    color: var(--gold);
+    font-size: clamp(30px, 7vw, 40px);
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+
+.access-divider {
+    width: 75px;
+    height: 1px;
+    margin: 0 auto 22px;
+    background: var(--gold);
+}
+
+.access-message {
+    max-width: 310px;
+    margin: 0 auto 24px;
+    color: #6b625e;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.access-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #8b7669;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+#accessCode {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #e3d4cc;
+    border-radius: 0;
+    background: #fffdfd;
+    color: #51443e;
+    font: inherit;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+}
+
+#accessCode:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
+}
+
+.access-button {
+    width: 100%;
+    margin-top: 14px;
+    padding: 15px 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.access-button:hover {
+    filter: brightness(1.04);
+}
+
+#accessError {
+    min-height: 18px;
+    margin-top: 12px;
+    color: #a33e48;
+    font-size: 12px;
+}
+
+.access-date {
+    margin-top: 26px;
+    color: #9b7b65;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.access-gate[hidden] {
+    display: none !important;
+}
+
+/* Keep background effects behind the access screen */
+body.access-locked #butterflyContainer,
+body.access-locked #lottieButterfly,
+body.access-locked #glitterCanvas,
+body.access-locked #musicBtn {
+    visibility: hidden;
+}
+
+@media (max-width: 480px) {
+    .access-card {
+        padding: 32px 22px;
+    }
+}
+
 /* =========================
 OPENING SCREEN (CINEMATIC)
 ========================= */
@@ -889,4 +1037,20 @@ RESPONSIVE
     grid-template-columns:repeat(2,1fr);
 }
 
+}
+
+/* PERSONALIZED GUEST GREETING */
+.opening-guest {
+    color: var(--gold);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(18px, 4vw, 23px);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 18px auto;
+    padding: 0 12px;
+    overflow-wrap: anywhere;
+}
+
+.opening-guest[hidden] {
+    display: none !important;
 }
