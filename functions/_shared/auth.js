@@ -70,7 +70,6 @@ export async function createSession(guest, secret) {
 export async function verifySession(request, env) {
   const secret = env.SESSION_SECRET;
   if (!secret || !env.DB) return null;
-  if (!secret) return null;
 
   const cookieHeader = request.headers.get("Cookie") || "";
   const match = cookieHeader.match(/(?:^|;\s*)wedding_session=([^;]+)/);
