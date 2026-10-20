@@ -1,3 +1,125 @@
+/* =========================================
+   PRIVATE INVITATION ACCESS SCREEN
+========================================= */
+
+(() => {
+    const ACCESS_CODE = "13122026"; 
+    const SESSION_KEY = "aaWeddingAccessGranted";
+
+    document.body.classList.add("access-locked");
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const gate = document.getElementById("accessGate");
+        const form = document.getElementById("accessForm");
+        const input = document.getElementById("accessCode");
+        const error = document.getElementById("accessError");
+
+        if (!gate || !form || !input || !error) return;
+
+        function unlockInvitation() {
+            gate.hidden = true;
+            document.body.classList.remove("access-locked");
+            document.body.style.overflow = "";
+        }
+
+        if (sessionStorage.getItem(SESSION_KEY) === "yes") {
+            unlockInvitation();
+        } else {
+            document.body.style.overflow = "hidden";
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (input.value.trim() === ACCESS_CODE) {
+                sessionStorage.setItem(SESSION_KEY, "yes");
+                error.textContent = "";
+                unlockInvitation();
+            } else {
+                error.textContent =
+                    "Incorrect code. Please check your invitation.";
+                input.value = "";
+                input.focus();
+            }
+        });
+    });
+})();
+
+/* =========================================
+   PERSONALIZED WEDDING INVITATION
+========================================= */
+
+(() => {
+    // Mapping
+    const INVITATIONS = {
+        "431e3edf": "Hardi & Family",
+        "2192e615": "Auntie Serren and Molly",
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+        "a6b18aab": "Guest"
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const inviteId = params.get("invite");
+        const guestGreeting = document.getElementById("guestGreeting");
+
+        if (!guestGreeting || !inviteId) return;
+
+        const guestName = INVITATIONS[inviteId];
+
+        if (guestName) {
+            guestGreeting.textContent = `Dear ${guestName}`;
+            guestGreeting.hidden = false;
+        }
+    });
+})();
+
 /* =====================================================
  WEDDING INVITATION - MAIN.JS 
 ===================================================== */
