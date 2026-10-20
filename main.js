@@ -27,7 +27,7 @@ async () => {
     console.error("Unable to load guest greeting:", error);
     guestGreeting.hidden = true;
   }
-});
+};
 /* =====================================================
  WEDDING INVITATION - MAIN.JS 
 ===================================================== */
