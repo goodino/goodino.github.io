@@ -64,17 +64,18 @@ export async function onRequestPost({ request, env }) {
     );
 
     return Response.json(
-      {
-        ok: true,
-        guestName: guest.guest_name
-      },
-      {
-        headers: {
-          "Set-Cookie": sessionCookie(token),
-          "Cache-Control": "no-store"
-        }
-      }
-    );
+  {
+    ok: true,
+    guestName: guest.guest_name,
+    inviteId: guest.invite_id
+  },
+  {
+    headers: {
+      "Set-Cookie": sessionCookie(token),
+      "Cache-Control": "no-store"
+    }
+  }
+);
   } catch {
     return Response.json(
       { error: "Unable to verify your code right now." },
