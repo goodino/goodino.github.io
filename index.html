@@ -86,7 +86,7 @@ rel="stylesheet">
 <!-- ================= LOADER ================= -->
 <div id="loader">
      <div class="loader-ornament">
-    <img src="assets/images/ornament.webp" style="width: 100%; height: auto;">
+    <img id="loaderornament" src="assets/images/ornament.webp" style="width: 100%; height: auto;">
 </div>
 
     <div class="loader-content">
@@ -148,7 +148,7 @@ Canon in D
 <div id="mainContent">
 
     <div class="main-ornament">
-        <img src="assets/images/ornament.webp" style="width: 100%; height: auto;">
+        <img id="mainornament" src="assets/images/ornament.webp" style="width: 100%; height: auto;">
     </div>
 
 <!-- HERO -->
@@ -161,7 +161,7 @@ Canon in D
 
         <p class="hero-date">13 December 2026 • 6:00 PM</p>
 
-        <p class="hero-venue">Four Points by Sheraton, Medan</p>
+        <p class="hero-venue">Level 9 • Four Points by Sheraton, Medan</p>
 
     </div>
 </section>
@@ -169,6 +169,11 @@ Canon in D
 <!-- COUNTDOWN -->
 <section id="countdown" class="countdown-section">
     <div class="container">
+
+        <div class="countdown-heading">
+            <p>COUNTING DOWN TO FOREVER</p>
+            <span class="countdown-heading-divider"></span>
+        </div>
 
         <div class="countdown-wrapper">
 
@@ -335,6 +340,38 @@ Canon in D
 
         </div>
 
+                <!-- HSBC -->
+        <div class="gift-item glass">
+
+            <button class="gift-toggle">
+                <span>HSBC Hong Kong</span>
+                <span>+</span>
+            </button>
+
+            <div class="gift-content">
+
+                <p class="gift-label">
+                    Account Number
+                </p>
+
+                <p class="gift-account">
+                    022&nbsp;264&nbsp;8988
+                </p>
+
+                <p>
+                    Phalleap Kham
+                </p>
+
+                <button
+                    class="btn-gold"
+                    onclick="copyText('0222648988')">
+                    Copy Account Number
+                </button>
+
+            </div>
+
+        </div>
+
         <!-- ABA -->
         <div class="gift-item glass">
 
@@ -427,7 +464,7 @@ Canon in D
 
     <p class="footer-quote">
     "Every love story is beautiful,
-    but ours is my favorite."
+    <br>but ours is my favorite."
     </p>
 
     <p class="footer-blessing">
