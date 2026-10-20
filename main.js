@@ -1,33 +1,3 @@
-async () => {
-  const guestGreeting = document.getElementById("guestGreeting");
-
-  if (!guestGreeting) return;
-
-  try {
-    const response = await fetch("/api/me", {
-      method: "GET",
-      credentials: "same-origin",
-      cache: "no-store"
-    });
-
-    if (!response.ok) {
-      guestGreeting.hidden = true;
-      return;
-    }
-
-    const guest = await response.json();
-
-    if (guest.authenticated && guest.guestName) {
-      guestGreeting.textContent = `Dear ${guest.guestName}`;
-      guestGreeting.hidden = false;
-    } else {
-      guestGreeting.hidden = true;
-    }
-  } catch (error) {
-    console.error("Unable to load guest greeting:", error);
-    guestGreeting.hidden = true;
-  }
-};
 /* =====================================================
  WEDDING INVITATION - MAIN.JS 
 ===================================================== */
@@ -397,4 +367,41 @@ document.querySelectorAll('.qr-clickable').forEach(img => {
 
     });
 
+});
+
+
+/* =========================
+   PERSONALIZED GUEST GREETING
+========================= */
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const guestGreeting = document.getElementById("guestGreeting");
+
+  if (!guestGreeting) {
+    console.error("Guest greeting element #guestGreeting not found.");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/me", {
+      method: "GET",
+      credentials: "same-origin",
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      console.error("Could not retrieve guest session:", response.status);
+      return;
+    }
+
+    const guest = await response.json();
+    console.log("Guest data:", guest);
+
+    if (guest.authenticated && guest.guestName) {
+      guestGreeting.textContent = `Dear ${guest.guestName}`;
+      guestGreeting.hidden = false;
+    }
+  } catch (error) {
+    console.error("Unable to load guest greeting:", error);
+  }
 });
