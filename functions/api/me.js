@@ -2,10 +2,7 @@
 import { verifySession } from "../_shared/auth.js";
 
 export async function onRequestGet({ request, env }) {
-  const session = await verifySession(
-    request,
-    env.SESSION_SECRET
-  );
+  const session = await verifySession(request, env);
 
   if (!session) {
     return Response.json(
