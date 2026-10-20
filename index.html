@@ -1,32 +1,223 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>Wedding Invitation | Austin & Jia Jia</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body class="access-locked">
-  <main id="accessGate" class="access-gate">
-    <h1>Austin &amp; Jia Jia</h1>
-    <p>You are warmly invited to our wedding.</p>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Wedding Invitation | Austin & Anisa</title>
 
-    <form id="accessForm">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #fbf6f2;
+      color: #59483d;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 42px 28px;
+      text-align: center;
+      background: #fffdfb;
+      border: 1px solid #eadccf;
+      border-radius: 18px;
+      box-shadow: 0 12px 36px rgba(80, 55, 40, 0.08);
+    }
+
+    .monogram {
+      margin-bottom: 18px;
+      color: #b3944d;
+      font-size: 1.1rem;
+      letter-spacing: 5px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
+      font-weight: normal;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: #86776b;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d9c8b8;
+      border-radius: 8px;
+      background: #fff;
+      color: #45372f;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    input:focus {
+      outline: 2px solid #b3944d;
+      outline-offset: 2px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px;
+      border: 0;
+      border-radius: 8px;
+      background: #b3944d;
+      color: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    #message {
+      min-height: 24px;
+      margin: 16px 0 0;
+      color: #a33c35;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 26px;
+      color: #a39487;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <div class="monogram">A &amp; A</div>
+
+    <h1>Wedding Invitation</h1>
+
+    <p class="subtitle">
+      We are delighted to share our special day with you.<br>
+      Please enter the access code from your invitation.
+    </p>
+
+    <form id="loginForm">
       <label for="accessCode">Invitation access code</label>
+
       <input
         id="accessCode"
+        name="code"
         type="password"
-        autocomplete="one-time-code"
+        inputmode="text"
+        autocomplete="off"
         required
-        maxlength="64"
+        maxlength="128"
+        placeholder="Enter your code"
       >
-      <button type="submit" class="access-button">
-        OPEN INVITATION
+
+      <button id="submitButton" type="submit">
+        View Invitation
       </button>
-      <p id="accessError" role="alert" aria-live="polite"></p>
+
+      <p id="message" role="alert" aria-live="polite"></p>
     </form>
+
+    <div class="footer">
+      With love, Austin &amp; Anisa
+    </div>
   </main>
-  <script src="/access.js" defer></script>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const input = document.getElementById("accessCode");
+    const button = document.getElementById("submitButton");
+    const message = document.getElementById("message");
+
+    async function checkExistingSession() {
+      try {
+        const response = await fetch("/api/me", {
+          credentials: "same-origin",
+          cache: "no-store"
+        });
+
+        if (response.ok) {
+          window.location.replace("/invitation.html");
+        }
+      } catch {
+        // The visitor can still submit their access code.
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const code = input.value.trim();
+
+      if (!code) {
+        message.textContent = "Please enter your access code.";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Verifying...";
+      message.textContent = "";
+
+      try {
+        const response = await fetch("/api/login", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ code })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          message.textContent =
+            result.error || "Unable to verify your code.";
+          input.value = "";
+          input.focus();
+          return;
+        }
+
+        window.location.replace("/invitation.html");
+      } catch {
+        message.textContent =
+          "Unable to connect. Please try again.";
+      } finally {
+        button.disabled = false;
+        button.textContent = "View Invitation";
+      }
+    });
+
+    checkExistingSession();
+  </script>
 </body>
 </html>
