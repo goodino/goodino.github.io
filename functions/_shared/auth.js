@@ -50,7 +50,7 @@ export async function createSession(guest, secret) {
   const payload = {
     inviteId: guest.invite_id,
     guestName: guest.guest_name,
-    exp: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60
+    exp: Math.floor(new Date("2027-01-01T00:00:00Z").getTime() / 1000)
   };
 
   const payloadPart = toBase64Url(
@@ -132,7 +132,11 @@ export function sessionCookie(token) {
     "Secure",
     "SameSite=Lax",
     "Path=/",
-    `Max-Age=${7 * 24 * 60 * 60}`
+    `Max-Age=${Math.max(
+  0,
+  Math.floor(new Date("2027-01-01T00:00:00Z").getTime() / 1000)
+    - Math.floor(Date.now() / 1000)
+)}`
   ].join("; ");
 }
 
