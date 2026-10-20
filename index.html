@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Wedding Invitation | Austin & Jia Jia</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="access-locked">
+  <main id="accessGate" class="access-gate">
+    <h1>Austin &amp; Jia Jia</h1>
+    <p>You are warmly invited to our wedding.</p>
+
+    <form id="accessForm">
+      <label for="accessCode">Invitation access code</label>
+      <input
+        id="accessCode"
+        type="password"
+        autocomplete="one-time-code"
+        required
+        maxlength="64"
+      >
+      <button type="submit" class="access-button">
+        OPEN INVITATION
+      </button>
+      <p id="accessError" role="alert" aria-live="polite"></p>
+    </form>
+  </main>
+  <script src="/access.js" defer></script>
+</body>
+</html>
