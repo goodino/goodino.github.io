@@ -18,10 +18,7 @@ export async function onRequest(context) {
     return context.next();
   }
 
-  const session = await verifySession(
-    request,
-    env.SESSION_SECRET
-  );
+  const session = await verifySession(request, env);
 
   if (!session) {
     if (path.startsWith("/api/")) {
