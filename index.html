@@ -31,6 +31,48 @@ rel="stylesheet">
 </head>
 
 <body>
+    
+<!-- PRIVATE INVITATION GATE -->
+<div id="accessGate" class="access-gate">
+    <div class="access-card">
+        <p class="access-heart">♡</p>
+
+        <p class="access-eyebrow">A PRIVATE INVITATION</p>
+
+        <h1>Anisa &amp; Austin</h1>
+
+        <div class="access-divider"></div>
+
+        <p class="access-message">
+            This invitation is reserved for our family
+            and friends. Please enter the access code
+            to continue.
+        </p>
+
+        <form id="accessForm">
+            <label for="accessCode" class="access-label">
+                Invitation access code
+            </label>
+
+            <input
+                id="accessCode"
+                type="password"
+                placeholder="Enter access code"
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit" class="access-button">
+                OPEN INVITATION
+            </button>
+
+            <p id="accessError" role="alert" aria-live="polite"></p>
+        </form>
+
+        <p class="access-date">13 DECEMBER 2026 · MEDAN</p>
+    </div>
+</div>
+<!-- END PRIVATE INVITATION GATE -->
 
     <img
         id="siteBg"  
@@ -87,11 +129,14 @@ Canon in D
 
         <p class="opening-subtitle">Save the Date</p>
 
-        <h1 class="opening-title">Austin<br>&<br>Jia Jia</h1>
-
-        <p class="opening-date">13 December 2026</p>
+        <h1 class="opening-title">Austin & Jia Jia</h1>
 
         <p class="opening-khmer">សូមគោរពអញ្ជើញចូលរួមពិធីមង្គលការ</p>
+
+<!-- Guest Name-->       
+        <p id="guestGreeting" class="opening-guest" hidden></p>
+
+        <p class="opening-date">13 December 2026</p>
 
         <button id="openInvitation">Open Invitation</button>
 
