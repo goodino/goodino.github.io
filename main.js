@@ -1,3 +1,33 @@
+async () => {
+  const guestGreeting = document.getElementById("guestGreeting");
+
+  if (!guestGreeting) return;
+
+  try {
+    const response = await fetch("/api/me", {
+      method: "GET",
+      credentials: "same-origin",
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      guestGreeting.hidden = true;
+      return;
+    }
+
+    const guest = await response.json();
+
+    if (guest.authenticated && guest.guestName) {
+      guestGreeting.textContent = `Dear ${guest.guestName}`;
+      guestGreeting.hidden = false;
+    } else {
+      guestGreeting.hidden = true;
+    }
+  } catch (error) {
+    console.error("Unable to load guest greeting:", error);
+    guestGreeting.hidden = true;
+  }
+});
 /* =====================================================
  WEDDING INVITATION - MAIN.JS 
 ===================================================== */
