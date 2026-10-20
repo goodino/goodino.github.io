@@ -166,7 +166,9 @@
         });
 
         if (response.ok) {
-          window.location.replace("/invitation.html");
+          const destination = new URL("/invitation.html", window.location.origin);
+destination.searchParams.set("invite", result.inviteId);
+window.location.replace(destination.pathname + destination.search);
         }
       } catch {
         // The visitor can still submit their access code.
