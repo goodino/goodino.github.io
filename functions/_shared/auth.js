@@ -67,7 +67,9 @@ export async function createSession(guest, secret) {
   return `${payloadPart}.${toBase64Url(new Uint8Array(signature))}`;
 }
 
-export async function verifySession(request, secret) {
+export async function verifySession(request, env) {
+  const secret = env.SESSION_SECRET;
+  if (!secret || !env.DB) return null;
   if (!secret) return null;
 
   const cookieHeader = request.headers.get("Cookie") || "";
@@ -97,15 +99,27 @@ export async function verifySession(request, secret) {
     );
 
     if (
-      !payload.inviteId ||
-      !payload.guestName ||
-      !Number.isFinite(payload.exp) ||
-      payload.exp <= Math.floor(Date.now() / 1000)
-    ) {
-      return null;
-    }
+  !payload.inviteId ||
+  !payload.guestName ||
+  !Number.isFinite(payload.exp) ||
+  payload.exp <= Math.floor(Date.now() / 1000)
+) {
+  return null;
+}
 
-    return payload;
+const guest = await env.DB
+  .prepare(
+    `SELECT invite_id
+     FROM guests
+     WHERE invite_id = ? AND active = 1
+     LIMIT 1`
+  )
+  .bind(payload.inviteId)
+  .first();
+
+if (!guest) return null;
+
+return payload;
   } catch {
     return null;
   }
