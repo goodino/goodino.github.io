@@ -15,12 +15,13 @@ export async function onRequestGet({ request, env }) {
   }
 
   return Response.json(
-    {
-      authenticated: true,
-      guestName: session.guestName
-    },
-    {
-      headers: { "Cache-Control": "no-store" }
-    }
-  );
+  {
+    authenticated: true,
+    guestName: session.guestName,
+    inviteId: session.inviteId
+  },
+  {
+    headers: { "Cache-Control": "no-store" }
+  }
+);
 }
